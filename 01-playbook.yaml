@@ -1,0 +1,7 @@
+- name: ping the server
+  # Which servers to connect to
+  hosts: frontend
+  # List of tasks to execute
+  tasks:
+    - name: Ping the server to check connectivity
+      ansible.builtin.ping:
