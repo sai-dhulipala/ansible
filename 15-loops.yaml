@@ -1,0 +1,14 @@
+- name: Loops
+  hosts: local
+  connection: local
+  vars:
+    my_list:
+      - one
+      - two
+      - three
+  tasks:
+    - name: Loop through a list
+      ansible.builtin.debug:
+        # item is a reserved keyword in Ansible loops
+        msg: "Item: {{ item }}"
+      loop: "{{ my_list }}"
