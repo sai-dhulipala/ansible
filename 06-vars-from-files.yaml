@@ -1,0 +1,10 @@
+- name: Vars from files
+  hosts: localhost
+  connection: local
+  vars_files:
+    - course_info.yaml
+  tasks:
+    - name: Print course information
+      vars:
+      ansible.builtin.debug:
+        msg: "{{ student }} is enrolled in {{ course }} course which is for {{ duration }}."

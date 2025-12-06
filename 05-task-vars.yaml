@@ -1,4 +1,4 @@
-- name: play level vars
+- name: task level vars
   hosts: localhost
   connection: local
   vars:
