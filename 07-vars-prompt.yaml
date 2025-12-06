@@ -4,12 +4,16 @@
   vars_prompt:
     - name: course
       prompt: "Enter the course name"
-      private: no
+      private: false
 
     - name: duration
       prompt: "Enter the course duration"
-      private: no
+      private: false
+
+    - name: fees
+      prompt: "Enter the course fees"
+      private: true
   tasks:
     - name: Print course information
       ansible.builtin.debug:
-        msg: "This {{ course }} course is for {{ duration }}."
+        msg: "This {{ course }} course is for {{ duration }} and costs {{ fees }}."
