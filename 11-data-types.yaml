@@ -1,0 +1,45 @@
+- name: data types
+  hosts: local
+  connection: local
+  vars:
+    my_string: "Hello, World!"
+    my_integer: 42
+    my_float: 3.14
+    my_boolean: true
+    my_list:
+      - apple
+      - banana
+      - cherry
+    my_list_2: [1, 2, 3, 4, 5]
+    my_dict:
+      name: John Doe
+      age: 30
+      city: New York
+  tasks:
+    - name: Display string variable
+      ansible.builtin.debug:
+        msg: "String: {{ my_string }}"
+
+    - name: Display integer variable
+      ansible.builtin.debug:
+        msg: "Integer: {{ my_integer }}"
+
+    - name: Display float variable
+      ansible.builtin.debug:
+        msg: "Float: {{ my_float }}"
+
+    - name: Display boolean variable
+      ansible.builtin.debug:
+        msg: "Boolean: {{ my_boolean }}"
+
+    - name: Display list variable
+      ansible.builtin.debug:
+        msg: "List: {{ my_list }}"
+
+    - name: Display second list variable
+      ansible.builtin.debug:
+        msg: "List 2: {{ my_list_2 }}"
+
+    - name: Display dictionary variable
+      ansible.builtin.debug:
+        msg: "Dictionary: {{ my_dict }}"
