@@ -1,0 +1,14 @@
+- name: remove/install packages with loop
+  hosts: local
+  connection: local
+  vars:
+    packages_to_manage:
+      - {name: nginx, state: absent}
+      - {name: git, state: present}
+      - {name: zip, state: absent}
+  tasks:
+    - name: Ensure packages are installed/removed as per state
+      ansible.builtin.package:
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
+      loop: "{{ packages_to_manage }}"
