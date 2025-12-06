@@ -1,0 +1,9 @@
+- name: check the facts
+  hosts: local
+  connection: local
+  tasks:
+    - name: Install nginx if package manager is dnf
+      ansible.builtin.dnf:
+        name: nginx
+        state: latest
+      when: ansible_facts['pkg_mgr'] == 'dnf'
