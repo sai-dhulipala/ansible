@@ -1,0 +1,17 @@
+- name: Testing variable precedence
+  hosts: local
+  connection: local
+  vars:
+    name: "playbook variable"
+  vars_files:
+    - preference_vars.yaml
+  vars_prompt:
+    - name: name
+      prompt: "Enter your name"
+      private: false
+  tasks:
+    - name: Print course information
+      vars:
+        name: "task variable"
+      ansible.builtin.debug:
+        msg: "variable with precedence: {{ name }}"
