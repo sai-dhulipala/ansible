@@ -1,0 +1,27 @@
+- name: conditional statements
+  hosts: local
+  connection: local
+  vars:
+    user_role: "admin"
+    server_load: 75
+    feature_enabled: false
+  tasks:
+    - name: Check user role
+      ansible.builtin.debug:
+        msg: "User is an admin."
+      when: user_role == "admin"
+
+    - name: Check server load
+      ansible.builtin.debug:
+        msg: "Server load is high."
+      when: server_load > 70
+
+    - name: Check if feature is enabled
+      ansible.builtin.debug:
+        msg: "The feature is enabled."
+      when: feature_enabled
+
+    - name: Combined condition check
+      ansible.builtin.debug:
+        msg: "Admin user with high server load."
+      when: user_role == "admin" and server_load > 70
