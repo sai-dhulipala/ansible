@@ -1,5 +1,5 @@
 - name: built-in functions
-  hosts: localhost
+  hosts: local
   connection: local
   tasks:
     - name: Demonstrate built-in functions
