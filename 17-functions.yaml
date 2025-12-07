@@ -1,7 +1,16 @@
-- name: functions
-  hosts: local
+- name: built-in functions
+  hosts: localhost
   connection: local
   tasks:
-    - name: default variable
-      ansible.builtin.debug:
-        msg: "Hello {{ name }}"
+    - name: Demonstrate built-in functions
+      debug:
+        msg: >
+          Original string: "  Hello, Ansible!  "
+          | Trimmed string: "{{ '  Hello, Ansible!  ' | trim }}"
+          | Uppercase string: "{{ 'hello, ansible!' | upper }}"
+          | Lowercase string: "{{ 'HELLO, ANSIBLE!' | lower }}"
+          | Replaced string: "{{ 'Hello, Ansible!' | replace('Ansible', 'World') }}"
+          | Length of string: "{{ 'Hello, Ansible!' | length }}"
+          | Split string: "{{ 'apple,banana,cherry' | split(',') }}"
+          | Joined string: "{{ ['apple', 'banana', 'cherry'] | join('; ') }}"
+          | Current date: "{{ lookup('pipe', 'date +%Y-%m-%d') }}"
