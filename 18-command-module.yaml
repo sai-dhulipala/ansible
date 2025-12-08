@@ -1,11 +1,27 @@
-- name: command module example
+- name: command vs shell module example
   hosts: local
-  conecction: local
+  connection: local
   tasks:
     - name: Run a simple command
-      command: echo "Hello, World!"
+      ansible.builtin.command: echo "Hello, World!"
       register: command_output
 
     - name: Display command output
-      debug:
-        var: command_output.stdout
+      ansible.builtin.debug:
+        msg: "{{ command_output }}"
+
+    - name: Run a shell command with pipes
+      ansible.builtin.shell: "cat /etc/passwd | grep root"
+      register: shell_output
+
+    - name: Display shell output
+      ansible.builtin.debug:
+        msg: "{{ shell_output }}"
+
+    - name: Using command module on shell commands (fails)
+      ansible.builtin.command: "cat /etc/passwd | grep root"
+      register: command_fail_output
+
+    - name: Display command fail output
+      ansible.builtin.debug:
+        msg: "{{ command_fail_output }}"
