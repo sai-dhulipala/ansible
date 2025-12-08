@@ -1,0 +1,12 @@
+- name: User creation example using error handling
+  hosts: local
+  connection: local
+  tasks:
+    - name: Check if user 'roboshop' exists
+      ansible.builtin.command: id roboshop
+      register: user_check
+      ignore_errors: yes
+
+    - name: Create user 'roboshop' if it does not exist
+      ansible.builtin.command: useradd roboshop
+      when: user_check.rc != 0
