@@ -1,0 +1,11 @@
+- name: command module example
+  hosts: local
+  conecction: local
+  tasks:
+    - name: Run a simple command
+      command: echo "Hello, World!"
+      register: command_output
+
+    - name: Display command output
+      debug:
+        var: command_output.stdout
