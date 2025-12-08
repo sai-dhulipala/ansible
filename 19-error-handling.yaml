@@ -1,0 +1,22 @@
+- name: Error handling example
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Task that may fail
+      ansible.builtin.command: /bin/false
+      register: result
+      ignore_errors: yes
+
+    - name: Check if the previous task failed
+      ansible.builtin.debug:
+        msg: "The command failed as expected."
+      when: result.failed
+
+    - name: Task that always succeeds
+      ansible.builtin.command: /bin/true
+      register: success_result
+
+    - name: Confirm the success of the previous task
+      ansible.builtin.debug:
+        msg: "The command succeeded."
+      when: success_result.changed or success_result.rc == 0
